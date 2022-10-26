@@ -3,8 +3,8 @@ import TuyaDeviceManager from './TuyaDeviceManager';
 
 export default class TuyaHomeDeviceManager extends TuyaDeviceManager {
 
-  async getHomeList() {
-    const res = await this.api.get(`/v1.0/users/${this.api.tokenInfo.uid}/homes`);
+  async getHomeList(uid = this.api.tokenInfo.uid) {
+    const res = await this.api.get(`/v1.0/users/${uid}/homes`);
     return res;
   }
 

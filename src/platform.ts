@@ -219,26 +219,40 @@ export class TuyaPlatform implements DynamicPlatformPlugin {
     }
 
     let res;
-    const { accessId, accessKey, countryCode, username, password, appSchema } = this.options;
-    const api = new TuyaOpenAPI(TuyaOpenAPI.Endpoints.AMERICA, accessId, accessKey, this.log);
+    const { endpoint, accessId, accessKey, uid } = this.options;
+    const api = new TuyaOpenAPI(endpoint, accessId, accessKey, this.log);
     const mq = new TuyaOpenMQ(api, '1.0', this.log);
     const deviceManager = new TuyaHomeDeviceManager(api, mq);
 
-    this.log.info('Log in to Tuya Cloud.');
-    res = await api.homeLogin(countryCode, username, password, appSchema);
+    this.log.info('Get token.');
+    res = await api.getToken();
     if (res.success === false) {
-      this.log.error(`Login failed. code=${res.code}, msg=${res.msg}`);
-      if (LOGIN_ERROR_MESSAGES[res.code]) {
-        this.log.error(LOGIN_ERROR_MESSAGES[res.code]);
-      }
+      this.log.error(`Get token failed. code=${res.code}, msg=${res.msg}`);
       return null;
     }
+
+    this.log.info('Get user info.');
+    res = await api.homeGetUserInfo(uid);
+    if (res.success === false) {
+      this.log.error(`Get user info failed. code=${res.code}, msg=${res.msg}`);
+      return null;
+    }
+
+    // this.log.info('Log in to Tuya Cloud.');
+    // res = await api.homeLogin(countryCode, username, password, appSchema);
+    // if (res.success === false) {
+    //   this.log.error(`Login failed. code=${res.code}, msg=${res.msg}`);
+    //   if (LOGIN_ERROR_MESSAGES[res.code]) {
+    //     this.log.error(LOGIN_ERROR_MESSAGES[res.code]);
+    //   }
+    //   return null;
+    // }
 
     this.log.info('Start MQTT connection.');
     mq.start();
 
     this.log.info('Fetching home list.');
-    res = await deviceManager.getHomeList();
+    res = await deviceManager.getHomeList(uid);
     if (res.success === false) {
       this.log.error(`Fetching home list failed. code=${res.code}, msg=${res.msg}`);
       return null;

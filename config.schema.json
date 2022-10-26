@@ -26,12 +26,29 @@
 						"required": true
 					},
 					"endpoint": {
-						"title": "Endpoint URL",
+						"title": "Endpoint",
 						"type": "string",
 						"format": "url",
-						"condition": {
-							"functionBody": "return model.options.projectType === '1';"
-						}
+						"oneOf": [{
+							"title": "China Data Center",
+							"enum": ["https://openapi.tuyacn.com"]
+						}, {
+							"title": "Western America Data Center",
+							"enum": ["https://openapi.tuyaus.com"]
+						}, {
+							"title": "Eastern America Data Center",
+							"enum": ["https://openapi-ueaz.tuyaus.com"]
+						}, {
+							"title": "Central Europe Data Center",
+							"enum": ["https://openapi.tuyaeu.com"]
+						}, {
+							"title": "Western Europe Data Center",
+							"enum": ["https://openapi-weaz.tuyaeu.com"]
+						}, {
+							"title": "India Data Center",
+							"enum": ["https://openapi.tuyain.com"]
+						}],
+						"required": true
 					},
 					"accessId": {
 						"title": "Access ID",
@@ -43,41 +60,9 @@
 						"type": "string",
 						"required": true
 					},
-					"countryCode": {
-						"title": "Country Code",
-						"type": "integer",
-						"minimum": 1,
-						"condition": {
-							"functionBody": "return model.options.projectType === '2';"
-						}
-					},
-					"username": {
-						"title": "Username",
+					"uid": {
+						"title": "User ID",
 						"type": "string",
-						"condition": {
-							"functionBody": "return model.options.projectType === '2';"
-						}
-					},
-					"password": {
-						"title": "Password",
-						"type": "string",
-						"condition": {
-							"functionBody": "return model.options.projectType === '2';"
-						}
-					},
-					"appSchema": {
-						"title": "App",
-						"type": "string",
-						"default": "tuyaSmart",
-						"oneOf": [{
-								"title": "Tuya Smart",
-								"enum": ["tuyaSmart"]
-							},
-							{
-								"title": "Smart Life",
-								"enum": ["smartlife"]
-							}
-						],
 						"condition": {
 							"functionBody": "return model.options.projectType === '2';"
 						}

@@ -151,6 +151,16 @@ export default class TuyaOpenAPI {
   }
 
   /**
+   * In 'Smart Home' project, Get user info by uid.
+   * @param uid User ID
+   * @returns
+   */
+  async homeGetUserInfo(uid: string) {
+    const res = await this.get(`/v1.0/users/${uid}/infos`);
+    return res;
+  }
+
+  /**
    * In 'Smart Home' project, login with App's user.
    * @param countryCode 2-digit Country Code
    * @param username Username

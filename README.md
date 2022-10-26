@@ -36,7 +36,7 @@ If beta version works fine for a while, it will be merged into the upstream repo
     - Smoke Sensor
     - Contact Sensor
     - Leak Sensor
-- For `Custom` project, `username` and `password` options are no longer need. The plugin will create a default user and authorize to all assets automatically.
+- `username` and `password` options are no longer need. However for `Smart Home` project, now `endpoint` and `uid` is required.
 
 
 ## Supported Tuya Devices
@@ -86,12 +86,10 @@ Before configuration, please goto [Tuya IoT Platform](https://iot.tuya.com)
 
 - `platform` - **required** : Must be 'TuyaPlatform'
 - `options.projectType` - **required** : Must be '2'
+- `options.endpoint` - **required** : Endpoint URL from [API Reference -> Endpoints](https://developer.tuya.com/en/docs/iot/api-request?id=Ka4a8uuo1j4t4#title-1-Endpoints) table.
 - `options.accessId` - **required** : Access ID from [Tuya IoT Platform -> Cloud Develop](https://iot.tuya.com/cloud)
 - `options.accessKey` - **required** : Access Secret from [Tuya IoT Platform -> Cloud Develop](https://iot.tuya.com/cloud)
-- `options.countryCode` - **required** : Country Code
-- `options.username` - **required** : Username
-- `options.password` - **required** : Password
-- `options.appSchema` - **required** : App schema. 'tuyaSmart' for Tuya Smart App, 'smartlife' for Smart Life App.
+- `options.uid` - **required** : User ID of the linked Tuya App user.
 
 
 ## Troubleshooting
