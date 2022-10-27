@@ -59,13 +59,6 @@
 						"title": "Access Secret",
 						"type": "string",
 						"required": true
-					},
-					"uid": {
-						"title": "User ID",
-						"type": "string",
-						"condition": {
-							"functionBody": "return model.options.projectType === '2';"
-						}
 					}
 				}
 			}

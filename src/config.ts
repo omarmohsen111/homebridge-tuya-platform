@@ -12,7 +12,6 @@ export interface TuyaPlatformHomeConfigOptions {
   endpoint: string;
   accessId: string;
   accessKey: string;
-  uid: string;
 }
 
 export type TuyaPlatformConfigOptions = TuyaPlatformCustomConfigOptions | TuyaPlatformHomeConfigOptions;
@@ -34,6 +33,5 @@ export const homeOptionsSchema = {
     endpoint: { type: 'string', format: 'url', required: true },
     accessId: { type: 'string', required: true },
     accessKey: { type: 'string', required: true },
-    uid: { type: 'string', required: true },
   },
 };

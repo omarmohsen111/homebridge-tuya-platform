@@ -16,7 +16,7 @@
 - Update unit test.
 - For `Custom` project type, some API has switched to the same as `Smart Home`.
 - Rewrite the `Custom` project start process. User will be created and authorized automatically.
-- Rewrite the `Smart Home` project start process. No need to login user anymore.
+- Rewrite the `Smart Home` project start process. No need to login user anymore. (Requirement: the Tuya Develop account must same as the Tuya App account)
 
 ### Fixed
 - 1004 signature error when url query has more than 2 elements.

@@ -219,7 +219,7 @@ export class TuyaPlatform implements DynamicPlatformPlugin {
     }
 
     let res;
-    const { endpoint, accessId, accessKey, uid } = this.options;
+    const { endpoint, accessId, accessKey } = this.options;
     const api = new TuyaOpenAPI(endpoint, accessId, accessKey, this.log);
     const mq = new TuyaOpenMQ(api, '1.0', this.log);
     const deviceManager = new TuyaHomeDeviceManager(api, mq);
@@ -230,6 +230,7 @@ export class TuyaPlatform implements DynamicPlatformPlugin {
       this.log.error(`Get token failed. code=${res.code}, msg=${res.msg}`);
       return null;
     }
+    const uid = api.tokenInfo.uid;
 
     this.log.info('Get user info.');
     res = await api.homeGetUserInfo(uid);
