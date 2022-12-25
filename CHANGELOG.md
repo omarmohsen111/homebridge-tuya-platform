@@ -24,6 +24,7 @@
 - Adjust humidity range of dehumidifier and humidifier.
 - Print scene id in logs.
 - Update support for RGB Power Switch (`dj`).
+- Support `countdown` for valve.
 
 
 ## [1.6.0] - (2022.12.3)
